@@ -1,0 +1,232 @@
+* {
+  box-sizing: border-box;
+}
+
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('../fonts/Montserrat-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Montserrat-Medium';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('../fonts/Montserrat-Medium.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Montserrat-SemiBold';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('../fonts/Montserrat-SemiBold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Montserrat-Bold';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('../fonts/Montserrat-Bold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Potta One';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('../fonts/PottaOne-Regular.ttf') format('truetype');
+}
+
+.mynavbar {
+  font-family: 'Montserrat-SemiBold', sans-serif;
+  font-size: 1em;
+  background-color: #032541;
+}
+
+.mynavbar__title {
+  font-family: 'Potta One', cursive;
+  font-size: 1.5em;
+}
+
+.mynavbar__search {
+  border-radius: 5px 0 0 5px;
+  border: none;
+}
+
+.mynavbar__searchbtn {
+  border-radius: 0 5px 5px 0;
+}
+
+.myjumbotron {
+  border-radius: 0;
+  background-color: black !important;
+  font-family: 'Potta One', cursive;
+}
+
+.myjumbotron h1 {
+  font-size: 14em;
+}
+
+.mycard {
+  margin: 10px !important;
+  text-align: left;
+  border: none;
+  cursor: pointer;
+  -webkit-box-shadow: 0px 0px 2px 0px rgba(0,0,0,0.2);
+  -moz-box-shadow: 0px 0px 2px 0px rgba(0,0,0,0.2);
+  box-shadow: 0px 0px 2px 0px rgba(0,0,0,0.2);
+}
+
+.mycard:hover {
+  -webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.5);
+  -moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.5);
+  box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.5);
+}
+
+.mycard__title{
+  margin: 0;
+  font-family: 'Montserrat-Bold', sans-serif;
+  font-size: .9em;
+  color: black;
+}
+
+.mycard__subtitle {
+  font-family: 'Montserrat', sans-serif;
+  font-size: .9em;
+  color: #666666;
+}
+
+.card-body {
+  padding: 10px;
+}
+
+.myheader {
+  margin: 0 0 20px 70px;
+  text-align: left;
+  font-family: 'Potta One', cursive;
+  font-size: 1.4em;
+}
+
+.movie {
+  width: 100%;
+  height: calc(100vh - 62px);
+  display: flex;
+  background-color: #083458;
+}
+
+.movie__poster {
+  width: 25%;
+  margin: 0;
+  padding: 20px 20px 80px 20px;
+}
+
+.movie__image {
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+}
+
+.movie__details {
+  width: 75%;
+  margin-top: 80px;
+  padding: 20px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  color: white;
+  text-align: left;
+}
+
+.movie__title {
+  font-family: 'Montserrat-Bold', sans-serif;
+  font-size: 32px;
+}
+
+.movie__title--thin {
+  font-family: 'Montserrat', sans-serif;
+}
+
+.movie__runtime::before {
+  margin: 0 5px;
+  font-size: 20px;
+  content: '\2022';
+}
+
+.movie__rating {
+  display: flex;
+  align-items: center;
+}
+
+.movie__rating__value {
+  width: 60px;
+  height: 60px;
+  margin: 0 10px 20px 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Montserrat-Bold', sans-serif;
+  font-size: 18px;
+  background-color: #032541;
+  border-radius: 60px;
+}
+
+.movie__rating__value--green {
+  border: 5px solid #21D07A;
+}
+
+.movie__rating__value--yellow {
+  border: 5px solid #D2D531;
+}
+
+.movie__people {
+  display: flex;
+  font-family: 'Montserrat-Bold', sans-serif;
+  font-size: 14px;
+}
+
+.movie__role {
+  width: 30%;
+}
+
+.mylabel {
+  font-family: 'Montserrat-Medium', sans-serif;
+  font-size: 16px;
+}
+
+.mylabel--bold {
+  font-family: 'Montserrat-Bold', sans-serif;
+}
+
+.mylabel--thin {
+  margin-bottom: 0;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 13px;
+}
+
+.modal-dialog {
+  width: fit-content;
+}
+
+.modal-body {
+  padding: 0;
+}
+
+.modal-footer {
+  background-color: #032541;
+}
+
+.modal__image {
+  width: 300px;
+}
+
+.modal__button {
+  padding: 5px 10px;
+  font-family: 'Montserrat-SemiBold', sans-serif;
+  background-color: #0D637C;
+  border: none;
+}
