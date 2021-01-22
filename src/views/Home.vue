@@ -14,7 +14,16 @@
     </b-jumbotron>
     
     <!-- List movies -->
-    <h6 class="myheader">Movies</h6>
+    <div class="myheader">
+      <h6 class="myheader__title">Movies</h6>
+      <b-form-input v-model="title" size="sm" class="search" placeholder="Search"></b-form-input>
+      <b-button size="sm" class="search__btn" type="submit" variant="light" @click="searchMovie">
+        <b-icon icon="search"></b-icon>
+      </b-button>
+    </div>
+    <p v-show="title != '' && isSearch" class="mytitle" @click="clearSearch">{{ title }}
+      <b-icon class="ml-1" icon="x" variant="dark"></b-icon>
+    </p>
     <b-card-group deck class="ml-5" ref="imgComponent">
       <b-card
         v-b-modal.movie-modal
@@ -67,16 +76,23 @@ export default {
       movies: [],
       noImage: '~/assets/images/no-image.jpg',
       page: 1,
-      indexMovie: null
+      indexMovie: null,
+      title: "",
+      isSearch: false
     }
   },
   mounted() {
     this.loadMovies(1)
     this.lazyLoad()
+    this.clearLocalStorage()
   },
   methods: {
     loadMovies(page) {
-      this.$store.dispatch('loadMovies', page)
+      let movie = {
+        title: this.title,
+        page: page
+      }
+      this.$store.dispatch('loadMovies', movie)
         .then(response => {
           this.response = response.data
           if (this.response.Response) {
@@ -88,24 +104,28 @@ export default {
         .catch(error => {
           console.log(error);
         })
-      // axios
-      //   .get('http://www.omdbapi.com/?apikey=faf7e5bb&s=air&type=movie&page=' + page)
-      //   .then(response => {
-      //     console.log(response);
-      //     this.response = response.data
-      //     if (response.data.Response) {
-      //       response.data.Search.forEach(movie => {
-      //         this.movies.push(movie)
-      //       });
-      //     }
-      //     console.log(this.movies);
-      //   })
-      //   .catch(error => {
-      //     console.log(error);
-      //   })
+    },
+    searchMovie() {
+      this.$store.dispatch('searchMovies', this.title)
+        .then(response => {
+          this.response = response.data
+          if (this.response.Response) {
+            this.isSearch = true
+            this.movies = this.response.Search
+          }
+        })
+        .catch(error => {
+          console.log(error);
+        })
     },
     movieDetails(imdbID) {
       this.$router.push({ name: 'Details', params: { imdbID }})
+    },
+    clearSearch() {
+      this.title = ""
+      this.movies = []
+      this.isSearch = false
+      this.loadMovies(1)
     },
     lazyLoad() {
       window.addEventListener('scroll', () => {
@@ -116,6 +136,11 @@ export default {
           }
         }
       })
+    },
+    clearLocalStorage() {
+      if (localStorage.getItem('imdbID')) {
+        localStorage.removeItem('imdbID')
+      }
     }
   },
   beforeDestroy() {
@@ -130,3 +155,9 @@ export default {
   },
 }
 </script>
+
+<style scoped>
+body {
+  min-width: 578px;
+}
+</style>

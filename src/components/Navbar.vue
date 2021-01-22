@@ -14,13 +14,6 @@
         </b-navbar-nav>
 
         <b-navbar-nav class="ml-auto">
-          <b-nav-form class="mr-3">
-            <b-form-input size="sm" class="mynavbar__search" placeholder="Search"></b-form-input>
-            <b-button size="sm" class="my-2 my-sm-0 mynavbar__searchbtn" type="submit" variant="light">
-              <b-icon icon="search"></b-icon>
-            </b-button>
-          </b-nav-form>
-
           <b-nav-item-dropdown text="Lang" right>
             <b-dropdown-item href="#">EN</b-dropdown-item>
             <b-dropdown-item href="#">ES</b-dropdown-item>

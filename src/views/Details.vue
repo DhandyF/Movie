@@ -62,8 +62,13 @@ export default {
   },
   methods: {
     loadDetails(imdbID) {
+      if (!imdbID) {
+        imdbID = localStorage.getItem('imdbID')
+      }
       this.$store.dispatch('loadDetailsMovie', imdbID)
         .then(response => {
+          
+          console.log(this.$store.state.imdbID);
           console.log(response);
           this.movie = response.data
         })

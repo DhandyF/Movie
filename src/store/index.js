@@ -24,12 +24,16 @@ export default new Vuex.Store({
     }
   },
   actions: {
-    loadMovies({ commit }, page) {
+    loadMovies({ commit }, movie) {
       return new Promise((resolve, reject) => {
         commit("REQUEST");
+        let title = "air"
+        if (movie.title !== "") {
+          title = movie.title
+        }
 
         axios
-        .get('http://www.omdbapi.com/?apikey=faf7e5bb&s=air&type=movie&page=' + page)
+        .get('http://www.omdbapi.com/?apikey=faf7e5bb&s=' + title + '&type=movie&page=' + movie.page)
           .then(response => {
             if (response.data.Response) {
               commit("SUCCESS");
@@ -42,6 +46,22 @@ export default new Vuex.Store({
           })
       })
     },
+    searchMovies({ commit }, title) {
+      return new Promise((resolve, reject) => {
+        commit("REQUEST")
+
+        axios
+        .get('http://www.omdbapi.com/?apikey=faf7e5bb&s=' + title)
+          .then(response => {
+            commit("SUCCESS")
+            resolve(response)
+          })
+          .catch(error => {
+            commit("ERROR")
+            reject(error)
+          })
+      })
+    },
     loadDetailsMovie({ commit }, imdbID) {
       return new Promise((resolve, reject) => {
         commit("REQUEST");
@@ -50,7 +70,9 @@ export default new Vuex.Store({
         .get('http://www.omdbapi.com/?apikey=faf7e5bb&i=' + imdbID)
           .then(response => {
             if (response.data.Response) {
+              commit("STORE_IMDBID", imdbID)
               commit("SUCCESS")
+              localStorage.setItem('imdbID', imdbID)
               resolve(response)
             }
           })

@@ -11,6 +11,9 @@ import '@/assets/css/main.css'
 Vue.use(BootstrapVue)
 Vue.use(IconsPlugin)
 
+import wb from "./registerServiceWorker";
+Vue.prototype.$workbox = wb;
+
 Vue.config.productionTip = false
 
 new Vue({
