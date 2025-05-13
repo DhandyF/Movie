@@ -135,17 +135,10 @@ export default {
 
         if (scrollY % 100 < 30) {
           if (scrollY + windowHeight > documentHeight - 99) {
-            console.log('--asd', scrollY, scrollY % 100, windowHeight, documentHeight);
             this.page++;
             this.loadMovies(this.page);
           }
         }
-        // if (pageYOffset%100 == 0) {
-        //   if(pageYOffset + outerHeight > document.body.scrollHeight - 99) {
-        //     this.page++
-        //     this.loadMovies(this.page)
-        //   }
-        // }
       })
     },
     clearLocalStorage() {
@@ -155,14 +148,7 @@ export default {
     }
   },
   beforeDestroy() {
-    window.removeEventListener('scroll', () => {
-      if (pageYOffset%100 == 0) {
-        if(pageYOffset + outerHeight > document.body.scrollHeight - 99) {
-          this.page++
-          this.loadMovie(this.page)
-        }
-      }
-    })
+    window.removeEventListener('scroll')
   },
 }
 </script>
