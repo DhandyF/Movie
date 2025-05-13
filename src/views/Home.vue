@@ -24,7 +24,7 @@
     <p v-show="title != '' && isSearch" class="mytitle" @click="clearSearch">{{ title }}
       <b-icon class="ml-1" icon="x" variant="dark"></b-icon>
     </p>
-    <b-card-group deck class="ml-5" ref="imgComponent">
+    <b-card-group class="mx-4" ref="imgComponent">
       <b-card
         v-b-modal.movie-modal
         v-for="(movie,index) in movies"
@@ -129,12 +129,23 @@ export default {
     },
     lazyLoad() {
       window.addEventListener('scroll', () => {
-        if (pageYOffset%100 == 0) {
-          if(pageYOffset + outerHeight > document.body.scrollHeight - 99) {
-            this.page++
-            this.loadMovies(this.page)
+        const scrollY = window.scrollY;
+        const windowHeight = window.innerHeight;
+        const documentHeight = document.body.scrollHeight;
+
+        if (scrollY % 100 < 30) {
+          if (scrollY + windowHeight > documentHeight - 99) {
+            console.log('--asd', scrollY, scrollY % 100, windowHeight, documentHeight);
+            this.page++;
+            this.loadMovies(this.page);
           }
         }
+        // if (pageYOffset%100 == 0) {
+        //   if(pageYOffset + outerHeight > document.body.scrollHeight - 99) {
+        //     this.page++
+        //     this.loadMovies(this.page)
+        //   }
+        // }
       })
     },
     clearLocalStorage() {
